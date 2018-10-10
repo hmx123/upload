@@ -1,0 +1,10 @@
+{# 继承自bootstrap基础模板 #}
+{% extends 'bootstrap/base.html' %}
+
+{# 导入快速渲染表单的宏 #}
+{% from 'bootstrap/wtf.html' import quick_form %}
+{% block title %}登录{% endblock %}
+
+{% block content %}
+    {{ quick_form(form) }}
+{% endblock %}
