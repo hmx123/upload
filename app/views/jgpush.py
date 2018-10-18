@@ -7,8 +7,8 @@ from flask_login import login_required
 
 jg = Blueprint('jg', __name__)
 
-app_key = u'168135a19e4fae1414183d22'
-master_secret = u'd25a54a591409078bcf9b003'
+app_key = u'168135a19e4fae1414183XXX'
+master_secret = u'd25a54a591409078bcf9XXXX'
 
 
 _jpush = jpush.JPush(app_key, master_secret)
