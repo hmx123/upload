@@ -1,0 +1,32 @@
+{% extends 'common/base.html' %}
+
+
+
+<form method="post" action="/check/updata/">
+
+{% block title %}头像审核{% endblock %}
+{% block page_content %}
+
+    <div class="list-group">
+        {% for icon in icons %}
+            {{ icon.user_id }}
+            <img src="{{ img_url+icon.icon }}">
+            <input name="user" type="hidden" value="{{ icon.user_id }}"/>
+            <select name="test">
+                <option value="2">通过</option>
+                <option value="3">不通过</option>
+            </select>
+        {% endfor %}
+    </div>
+
+    <input type="submit"/>
+</form>
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        {% for n in pages %}
+            <li><a href="/check/{{ n }}">{{ n }}</a></li>
+        {% endfor %}
+    </ul>
+</nav>
+{% endblock %}
+

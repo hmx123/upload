@@ -17,7 +17,7 @@ class Config:
 
 # 开发环境配置
 class DevelopConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:root@localhost:3306/uploaddev?charset=utf8'
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:root@localhost:3306/accont?charset=utf8'
 
 
 # 测试环境配置

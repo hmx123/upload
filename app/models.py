@@ -2,6 +2,7 @@ from flask_login import UserMixin
 
 from app.extensions import db, login_manager
 from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import datetime
 
 
 # 用户头像模型
@@ -37,3 +38,11 @@ class Admin(UserMixin, db.Model):
 @login_manager.user_loader
 def load_user(uid):
     return Admin.query.get(uid)
+
+# 极光推送
+class Jgpush(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(50))
+    message = db.Column(db.Text)
+    datatime = db.Column(db.String(30), default=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+

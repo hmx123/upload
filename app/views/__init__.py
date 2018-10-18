@@ -1,4 +1,5 @@
 from .check import check
+from .jgpush import jg
 from .user import user
 
 
@@ -7,6 +8,7 @@ from .user import user
 DEFAULT_BLUEPRINT = (
     (user, '/user'),
     (check, '/check'),
+    (jg, '/jg')
 )
 
 

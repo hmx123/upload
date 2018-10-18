@@ -1,3 +1,4 @@
+#-*- coding:utf-8 â€“*-
 from flask import Blueprint, request, render_template, url_for
 from app.models import Icon
 from app.extensions import db, photos
@@ -18,7 +19,7 @@ def check_photo(page=1):
     total = Icon.query.count()
     pages = ceil(total / per_page)
     img_url = url_for('static', filename='upload/')
-    return render_template('common/base.html', icons=icons, img_url=img_url, pages=range(1, pages))
+    return render_template('common/icon.html', icons=icons, img_url=img_url, pages=range(1, pages))
 
 @check.route('/updata/', methods=['POST'])
 def updata_photo():
@@ -31,7 +32,7 @@ def updata_photo():
     db.session.add_all(icons)
     db.session.commit()
     users = Icon.query.filter_by(confirmed=2).all()
-    # ½«ÉóºËÍ·ÏñÉÏ´«ÖÁÍøÒ×ÔÆ def wyy_updata_user(accid, icon, token):
+    # ï¿½ï¿½ï¿½ï¿½ï¿½Í·ï¿½ï¿½ï¿½Ï´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ def wyy_updata_user(accid, icon, token):
     for user in users:
         img_url = photos.url(user.icon)
         img_url = img_url.replace('_uploads', 'static')
@@ -40,7 +41,7 @@ def updata_photo():
         print(wyy_updata_user(user.user_id, img_url))
     return 'ok'
 
-# Êý¾Ý´¦Àí
+# ï¿½ï¿½ï¿½Ý´ï¿½ï¿½ï¿½
 def reques_data(string):
     string = string.strip('ImmutableMultiDict(')
     string = eval(string.strip(')'))

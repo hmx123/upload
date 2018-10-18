@@ -8,7 +8,8 @@ apiurl = {
 	'create_user':'https://api.netease.im/nimserver/user/create.action',
 	'create_room':'https://api.netease.im/nimserver/chatroom/create.action',
 	'create_group': '',
-	'updata_user': 'https://api.netease.im/nimserver/user/updateUinfo.action'
+	'updata_user': 'https://api.netease.im/nimserver/user/updateUinfo.action',
+	'push_message': 'https://api.netease.im/nimserver/msg/broadcastMsg.action'
 }
 
 # 更新用户头像 accid, icon,token
@@ -30,3 +31,17 @@ def wyy_updata_user(accid, icon):
 		except ValueError:
 			jsonData = None
 	return None
+
+# 广播消息
+def pushmessage(body, fro):
+	body = ('body=%s&from=%s' % (body, fro)).encode("utf-8")
+	nonce = '575728120'  # 随机数（最大长度128个字符）
+	curTime = str(int(time.time()))
+	checkSum = AppSecret + nonce + curTime
+	checkSum = hashlib.sha1(checkSum.encode("utf-8")).hexdigest()
+	headers = {'content-type': 'application/x-www-form-urlencoded;charset=utf-8', 'AppKey': AppKey, 'Nonce': nonce,
+			   'CurTime': curTime, 'CheckSum': checkSum}
+	response = requests.post(apiurl['updata_user'], data=body, headers=headers)
+	print(response.text)
+	print(response.status_code)
+	print(response)
